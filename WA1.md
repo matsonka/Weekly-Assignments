@@ -40,6 +40,31 @@ ghost adventures
 ghost hunters
 
 
-# Commands for 
+# Commands for Grocery Shopping List
+First a file would have to have been created before called groceryshoppinglist.txt, which is comprised of a list of groceries that need to be bought
+
+groceryshoppinglist.txt
+Cereal
+Milk
+Honey
+Bread
+Eggs
+
+
+### Purpose
+The purpose of using the sed command is to insert, replace (substitute), or delete parts of a file. Here the sed command's purpose is to replace a part of the file. The purpose of the find command is to find files or directories, and here the find command will be used to find a a certain file.
+
+
+So we want to find our grocery shopping list in our files so we need to first use the find command.
+$find groceryshoppinglist.txt
+
+Now we can use the sed command to replace the parts of the shopping list that we already bought with something else that we need to buy
+
+$sed 's/Milk/Syrup/' groceryshoppinglist.txt  
+Cereal
+Syrup
+Honey
+Bread
+Eggs
 
 
