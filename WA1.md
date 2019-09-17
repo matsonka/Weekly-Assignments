@@ -1,6 +1,6 @@
 # Commands for the List of Animals
 
-A new directory should be created and then a new file created to start a piped command. Here we will make the file about wild animals
+A new directory should be created and then a new file created to start a piped command. Here we will make the file about wild animals  
 wildanimals.txt
 Fox
 Fox
