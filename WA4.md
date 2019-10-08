@@ -23,7 +23,9 @@ bowtie2-build C.hydrogenoformans_Z2901.fasta C.hydro
 bowtie2 -x C.ferri -1 C.ferri_R1.cutadapt.fastq -2 C.ferri_R2.cutadapt.fastq -S 6008C.ferri.sam
 
 
-#What percentage of the reads mapped to the reference genome?
+# What percentage of the reads mapped to the reference genome?
 76.54%
-#What percentage of reads did not map to the reference genome?
+
+
+# What percentage of reads did not map to the reference genome?
 23.46%
