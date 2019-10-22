@@ -25,9 +25,12 @@ However, first we want to look at all of these hits and check their e-values to 
 
 Based on the E-Values there are 10 potential HSPs in the unknown organism. Here are the 10 HSPs that were found in the unknown organism based on the e-values:
 
-WP_103686269.1	Unk_1985	31.707	123	73	2	45	167	22	133	6.01e-17	70.1
-WP_103686269.1	Unk_1863	34.066	91	56	1	79	169	31	117	2.11e-14	62.8
+WP_103686269.1	Unk_1985	31.707	123	73	2	45	167	22	133	6.01e-17	70.1  
+
+WP_103686269.1	Unk_1863	34.066	91	56	1	79	169	31	117	2.11e-14	62.8  
+
 WP_103686269.1	Unk_1860	30.833	120	72	4	49	167	8	117	2.20e-14	62.8
+
 WP_103686269.1	Unk_1117	25.773	97	64	2	73	169	33	121	1.91e-08	47.0
 NP_418567.1	Unk_30	61.639	537	202	3	3	536	2	537	0.0	632
 AJL35296.1	Unk_31	58.696	92	38	0	4	95	9	100	5.52e-34	109
