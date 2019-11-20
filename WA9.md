@@ -39,6 +39,10 @@ res4 <- filter(res2, padj<=0.05 & log2FoldChange<=-2)
 
 For plotting for weekly assignment 9:
 
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+BiocManager::install("dada2")
+BiocManager::install("phyloseq")
 
 ggplot
 res=mutate(res,significance=ifelse(padj<0.05,"Significant","Non-significant"))  
