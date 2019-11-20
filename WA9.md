@@ -45,10 +45,26 @@ BiocManager::install("dada2")
 BiocManager::install("phyloseq")
 
 ggplot
-res=mutate(res,significance=ifelse(padj<0.05,"Significant","Non-significant"))  
+
+res=mutate(res,significance=ifelse(padj<0.05,"Significant","Non-significant")) 
+
+
+To make basic volcano plot:
 ggplot(res) +
   geom_point(aes(x=log2FoldChange, y=-log10(padj), colour=significance)) +
-  scale_color_manual(values = c("Significant" = "red", "Non-Significant" = "blue"))+      
+  ggtitle("Mov10 overexpression") +
+  xlab("log2 fold change") + 
+  ylab("-log10 adjusted p-value") +
+  #scale_y_continuous(limits = c(0,50)) +
+  theme(legend.position = "none",
+        plot.title = element_text(size = rel(1.5), hjust = 0.5),
+        axis.title = element_text(size = rel(1.25)))  +
+  theme_bw()
+
+
+ggplot(res) +
+  geom_point(aes(x=log2FoldChange, y=-log10(padj), colour=significance)) +
+  scale_color_manual(values = c("Significant" = "red", "Non-significant" = "blue"))+      
   ggtitle("Mov10 overexpression") +
   xlab("log2 fold change") + 
   ylab("-log10 adjusted p-value") +
@@ -66,4 +82,3 @@ A volcano plot showing differentially expressed genes - color the Control points
 A box plot of the expression of the gene with the highest positive fold change
 A box plot of the expression of the gene with the highest negative fold change
 An MA. MA plots are log10 of the mean expression (baseMean) of a gene on the x-axis and log2FoldChange on the y-axis.
-Copy your plots to a word document and upload the word document along with a link to the github page with your code.
