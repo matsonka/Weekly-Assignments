@@ -1,28 +1,50 @@
-mycounts <- read.csv("BL5300-DEG/WA_counts.csv")                          --- input my countable with counts and gene id, use mycounts package to manipulate my data
-metadata <- read.csv("BL5300-DEG/WA8_Metadata.csv")                       --- input my samples and its treatment (which samples, which treatment: control, mutant,treated..), use metadata package to manipulate my data
-mycounts <- as.data.frame(mycounts)                                       --- change mycounts's  property to data.frame, a data format for us to use DESeq (To use DESeqDataSetFromMatrix, the user should provide the counts matrix, the information about the samples (the columns of the count matrix) as a DataFrame or data.frame)
-metadata <- as.data.frame(metadata)                                       --- change metadata's property to data.frame, a data format for us to use DESeq
+Commands for Weekly Assignment 9
+We are using our data from Weekly Assingment 8 to construct our plots. So this was my commands from weekly assignment 8:
+
+mycounts <- read_csv("data/WA_counts.csv")        The data is the folder where my WA_counts and WA8_metadata data are contained in
+metadata <- read_csv("data/WA8_metadata.csv")
+
+head(mycounts)
+head(metadata)
+
+class(mycounts)
+
+mycounts <- as.data.frame(mycounts)
+metadata <- as.data.frame(metadata)
+
+class(mycounts)
+
 names(mycounts)[-1]
-metadata$ï..id
-all(names(mycounts)[-1]==metadata$ï..id)                                  --- to test if samples match in mycounts and metadata
-dds.data <- DESeqDataSetFromMatrix(countData=mycounts,                    ---colData is a table that contains the information on each sample needed to decide which sample has which condition
+metadata$id
+names(mycounts)[-1]==metadata$id
+all(names(mycounts)[-1]==metadata$id)
+
+dds.data <- DESeqDataSetFromMatrix(countData=mycounts, 
                                    colData=metadata, 
                                    design=~dex, 
-                                   tidy=TRUE)                             --- make sure the format is correct
+                                   tidy=TRUE)
 dds.data
-dds <- DESeq(dds.data)                                                    --- output dds.data to dds
-res <- results(dds, contrast=c("dex","Control","Mutant"), tidy=TRUE)
+
+dds <- DESeq(dds.data)
+
+
+res <- results(dds, contrast=c("dex","Control","Mutant"), tidy=TRUE)        The Control and the Mutant are what we are comparing
 res <- tbl_df(res)
 res
-res2 <- arrange(res,padj)
-res3 <- filter(res2,padj<=0.05 & log2FoldChange>=2)
-res4 <- filter(res2,padj<=0.05 & log2FoldChange<=-2)
+
+res2 <- arrange(res, padj)
+res3 <- filter(res2, padj<=0.05 & log2FoldChange>=2)      This will tell us how many significantly different genes there are
+res4 <- filter(res2, padj<=0.05 & log2FoldChange<=-2)
+
+
+For plotting for weekly assignment 9:
+
 
 ggplot
-res=mutate(res,significance=ifelse(padj<0.05,"Significant","Non-significant"))  --- add a column indicating significance
+res=mutate(res,significance=ifelse(padj<0.05,"Significant","Non-significant"))  
 ggplot(res) +
   geom_point(aes(x=log2FoldChange, y=-log10(padj), colour=significance)) +
-  scale_color_manual(values = c("Significant" = "red", "Non-Significant" = "blue"))+      ---- change color manually
+  scale_color_manual(values = c("Significant" = "red", "Non-Significant" = "blue"))+      
   ggtitle("Mov10 overexpression") +
   xlab("log2 fold change") + 
   ylab("-log10 adjusted p-value") +
@@ -32,7 +54,8 @@ ggplot(res) +
         axis.title = element_text(size = rel(1.25)))  +
   theme_bw()
 
--------------------------------------------------------------------------------------------------------------------------
+
+
 Use the data generated from Weekly Assignment 8 to construct the following plots.
 
 A volcano plot showing differentially expressed genes - color the Control points blue and the Mutant points Red.
